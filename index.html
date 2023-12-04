@@ -54,7 +54,7 @@
 
 
         <div class="mob_verify_time">
-            <p class="mob_login_verify">Please verify your number within 04:49  seconds</p>
+            <p class="mob_login_verify">Please verify your number within 04:49 seconds</p>
         </div>
 
         <div class="mob_back_arrow mob_font">
@@ -65,6 +65,26 @@
 
 
     </section>
+
+    <script>
+        const otpInputs = document.querySelectorAll('.mob_otp_input');
+
+        otpInputs.forEach((input, index) => {
+            input.addEventListener('input', (event) => {
+                if (event.target.value.length === 1) {
+                    if (index < otpInputs.length - 1) {
+                        otpInputs[index + 1].focus();
+                    } else {
+                        // Last input reached
+                        // You can trigger verification or other actions here
+                    }
+                } else if (event.target.value.length === 0 && index > 0) {
+                    // If the user deletes the value, move focus to the previous input
+                    otpInputs[index - 1].focus();
+                }
+            });
+        });
+    </script>
 
 
 
